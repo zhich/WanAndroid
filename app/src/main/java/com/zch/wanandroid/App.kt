@@ -1,7 +1,5 @@
 package com.zch.wanandroid
 
-import android.content.Context
-import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zch.base.BaseApp
 import io.realm.Realm
@@ -24,10 +22,5 @@ class App : BaseApp() {
             ARouter.openDebug()
         }
         ARouter.init(this)
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
     }
 }

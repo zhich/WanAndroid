@@ -20,33 +20,33 @@ object JsonUtil {
         if (null == src) {
             return gson.toJson(JsonNull.INSTANCE)
         }
-        try {
-            return gson.toJson(src)
+        return try {
+            gson.toJson(src)
         } catch (e: JsonSyntaxException) {
             e.printStackTrace()
-            return null
+            null
         }
     }
 
-    fun <T> fromJson(json: String, classOfT: Class<T>): T? {
-        try {
-            return gson.fromJson<T>(json, classOfT as Type)
+    fun <T> fromJson(json: String?, classOfT: Class<T>): T? {
+        return try {
+            gson.fromJson<T>(json, classOfT as Type)
         } catch (e: JsonSyntaxException) {
             e.printStackTrace()
-            return null
+            null
         }
     }
 
-    fun fromJson(json: String, typeOfT: Type): Any? {
-        try {
-            return gson.fromJson<Any>(json, typeOfT)
+    fun fromJson(json: String?, typeOfT: Type): Any? {
+        return try {
+            gson.fromJson<Any>(json, typeOfT)
         } catch (e: JsonSyntaxException) {
             e.printStackTrace()
-            return null
+            null
         }
     }
 
-    fun getValue(json: String, key: String): String {
+    fun getValue(json: String?, key: String): String {
         try {
             val `object` = JSONObject(json)
             return `object`.optString(key)
