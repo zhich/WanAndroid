@@ -17,7 +17,7 @@ import io.reactivex.subjects.BehaviorSubject
 /**
  * Created by zch on 2019/01/04.
  */
-class RxLifecycleFragment : Fragment(), LifecycleProvider<FragmentEvent> {
+open class RxLifecycleFragment : Fragment(), LifecycleProvider<FragmentEvent> {
 
     private val lifecycleSubject = BehaviorSubject.create<FragmentEvent>()
 

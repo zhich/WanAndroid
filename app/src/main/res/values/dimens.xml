@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="bottom_tab_height">56dp</dimen>
+    <dimen name="bottom_tab_ic_size">20dp</dimen>
+</resources>

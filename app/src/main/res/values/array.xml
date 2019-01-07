@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="tab_icons">
+        <item>@drawable/selector_tab_home</item>
+        <item>@drawable/selector_tab_knowledge_hierarchy</item>
+        <item>@drawable/selector_tab_wechat</item>
+        <item>@drawable/selector_tab_navigation</item>
+        <item>@drawable/selector_tab_project</item>
+    </integer-array>
+
+    <string-array name="tab_texts">
+        <item>@string/tab_home</item>
+        <item>@string/tab_knowledge_hierarchy</item>
+        <item>@string/tab_wechat</item>
+        <item>@string/tab_navigation</item>
+        <item>@string/tab_project</item>
+    </string-array>
+</resources>
