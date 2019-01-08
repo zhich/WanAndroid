@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_bottom_tab_bg">#ffffff</color>
+
+    <color name="color_item_nav_tv">#19191B</color>
 </resources>

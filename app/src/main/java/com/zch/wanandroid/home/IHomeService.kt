@@ -1,5 +1,6 @@
 package com.zch.wanandroid.home
 
+import com.zch.base.net.Result
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
