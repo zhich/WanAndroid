@@ -14,6 +14,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        vectorDrawables.useSupportLibrary = true
+
         ndk {
             // 设置支持的 so 库架构（开发者可以根据需要，选择一个或多个平台的 so）
             abiFilters "armeabi", "armeabi-v7a", "x86"

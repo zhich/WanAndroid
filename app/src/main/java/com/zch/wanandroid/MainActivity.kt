@@ -2,14 +2,15 @@ package com.zch.wanandroid
 
 import android.content.res.TypedArray
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.app.ActionBarDrawerToggle
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.zch.base.rxlifecycle.RxLifecycleActivity
 import com.zch.wanandroid.home.HomeFragment
 import com.zch.wanandroid.navigation.NavigationFragment
@@ -26,11 +27,52 @@ class MainActivity : RxLifecycleActivity() {
     private lateinit var mTabsIcon: IntArray
     private lateinit var mTabsTitle: Array<String>
 
+    private var tvNavUsername: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initViews()
         initTabs()
+    }
+
+    private fun initViews() {
+        toolbar.run {
+            title = getString(R.string.app_name)
+            setSupportActionBar(this)
+        }
+        drawerLayout.run {
+            drawerLayout.run {
+                val toggle = ActionBarDrawerToggle(
+                        this@MainActivity,
+                        this,
+                        toolbar
+                        , R.string.navigation_drawer_open,
+                        R.string.navigation_drawer_close)
+                addDrawerListener(toggle)
+                toggle.syncState()
+            }
+        }
+        navView.run {
+            setNavigationItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.nav_collect -> Toast.makeText(baseContext, "收藏", Toast.LENGTH_SHORT).show()
+                    R.id.nav_logout -> Toast.makeText(baseContext, "退出登录", Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+//            setNavigationItemSelectedListener {
+//                when (it.itemId) {
+//                    R.id.nav_collect -> Toast.makeText(baseContext, "收藏", Toast.LENGTH_SHORT).show()
+//                    R.id.nav_logout -> Toast.makeText(baseContext, "退出登录", Toast.LENGTH_SHORT).show()
+//                }
+//                true
+//            }
+            tvNavUsername = getHeaderView(0).findViewById(R.id.tvUsername)
+
+            // todo navView
+        }
     }
 
     private fun initTabs() {
@@ -103,5 +145,20 @@ class MainActivity : RxLifecycleActivity() {
         if (fragment != null) {
             transaction.hide(fragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_search -> {
+                Toast.makeText(baseContext, "搜索", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -8,7 +8,7 @@
     tools:openDrawer="start">
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/navView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -17,38 +17,71 @@
         app:headerLayout="@layout/nav_header_main"
         app:itemIconTint="@color/color_item_nav_tv"
         app:itemTextColor="@color/color_item_nav_tv"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/menu_nav" />
 
-    <android.support.design.widget.CoordinatorLayout style="@style/layout_full">
+    <android.support.constraint.ConstraintLayout style="@style/layout_full">
 
-        <include layout="@layout/toolbar" />
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_big_size"
+                    android:visibility="gone" />
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/contentLayout"
-            style="@style/layout_full"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:fitsSystemWindows="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/color_divider"
-            android:visibility="visible"
-            app:layout_constraintTop_toTopOf="@id/tabLayout" />
+            app:layout_constraintBottom_toBottomOf="@+id/contentLayout"
+            app:layout_constraintTop_toTopOf="@+id/tabLayout" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_tab_height"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:tabBackground="@android:color/transparent"
             app:tabIndicatorHeight="0dp"
             app:tabRippleColor="@android:color/transparent" />
-    </android.support.design.widget.CoordinatorLayout>
-
-
+    </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.DrawerLayout>
