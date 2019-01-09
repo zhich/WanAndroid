@@ -7,20 +7,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:itemIconTint="@color/color_item_nav_tv"
-        app:itemTextColor="@color/color_item_nav_tv"
-        app:menu="@menu/menu_nav" />
-
     <android.support.constraint.ConstraintLayout style="@style/layout_full">
-
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
@@ -84,4 +71,16 @@
             app:tabIndicatorHeight="0dp"
             app:tabRippleColor="@android:color/transparent" />
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:itemIconTint="@color/color_item_nav_tv"
+        app:itemTextColor="@color/color_item_nav_tv"
+        app:menu="@menu/menu_nav" />
 </android.support.v4.widget.DrawerLayout>

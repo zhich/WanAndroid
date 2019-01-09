@@ -18,7 +18,7 @@ class CheckLoginStateInterceptor : Interceptor {
             if (response?.code() == 200) {
                 val body = response.body()?.string()
                 val mediaType = response.body()?.contentType()
-                val result = JsonUtil.fromJson(body, Result::class.java)
+                val result = JsonUtil.fromJson(body, HttpResult::class.java)
                 if (result?.errorCode == -1001) {
 //                    LogoutAuthPresenter().handleTokenInValid()
                 }

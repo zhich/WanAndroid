@@ -2,7 +2,6 @@ package com.zch.wanandroid
 
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -12,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.zch.base.rxlifecycle.RxLifecycleActivity
+import com.zch.wanandroid.home.Banner
 import com.zch.wanandroid.home.HomeFragment
 import com.zch.wanandroid.navigation.NavigationFragment
 import com.zch.wanandroid.project.ProjectFragment
@@ -55,20 +55,15 @@ class MainActivity : RxLifecycleActivity() {
             }
         }
         navView.run {
-            setNavigationItemSelectedListener { item ->
-                when (item.itemId) {
+            setNavigationItemSelectedListener {
+                when (it.itemId) {
                     R.id.nav_collect -> Toast.makeText(baseContext, "收藏", Toast.LENGTH_SHORT).show()
+                    R.id.nav_todo -> Toast.makeText(baseContext, "待办", Toast.LENGTH_SHORT).show()
+                    R.id.nav_settings -> Toast.makeText(baseContext, "设置", Toast.LENGTH_SHORT).show()
                     R.id.nav_logout -> Toast.makeText(baseContext, "退出登录", Toast.LENGTH_SHORT).show()
                 }
                 true
             }
-//            setNavigationItemSelectedListener {
-//                when (it.itemId) {
-//                    R.id.nav_collect -> Toast.makeText(baseContext, "收藏", Toast.LENGTH_SHORT).show()
-//                    R.id.nav_logout -> Toast.makeText(baseContext, "退出登录", Toast.LENGTH_SHORT).show()
-//                }
-//                true
-//            }
             tvNavUsername = getHeaderView(0).findViewById(R.id.tvUsername)
 
             // todo navView

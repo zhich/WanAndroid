@@ -73,4 +73,6 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
     implementation "com.alibaba:arouter-api:$rootProject.ext.arouterApi"
     kapt "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompiler"
+
+    implementation "cn.bingoogolapple:bga-banner:$rootProject.ext.bannerVersion"
 }

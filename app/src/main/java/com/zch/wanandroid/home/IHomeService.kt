@@ -1,6 +1,6 @@
 package com.zch.wanandroid.home
 
-import com.zch.base.net.Result
+import com.zch.base.net.HttpResult
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,5 +11,5 @@ import retrofit2.http.Path
 interface IHomeService {
 
     @GET("/article/list/{pageNum}/json")
-    fun getArticles(@Path("pageNum") pageNum: Int): Observable<Result<ArticleResp>>
+    fun getArticles(@Path("pageNum") pageNum: Int): Observable<HttpResult<ArticleResp>>
 }

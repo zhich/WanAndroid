@@ -12,7 +12,9 @@
 
     <string name="login">登录</string>
 
-    <string name="nav_my_collect">收藏</string>
+    <string name="nav_collect">收藏</string>
+    <string name="nav_todo">待办</string>
+    <string name="nav_settings">设置</string>
     <string name="nav_logout">退出登录</string>
 
     <string name="action_search">搜索</string>
