@@ -7,5 +7,5 @@ object ErrorCode {
 
     val SUCCESS = 0
 
-    val TOKEN_INVAILD = 401
+    val TOKEN_INVAILD = -1001
 }

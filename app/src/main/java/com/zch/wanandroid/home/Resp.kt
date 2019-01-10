@@ -3,6 +3,18 @@ package com.zch.wanandroid.home
 /**
  * Created by zch on 2019/01/05.
  */
+
+data class Banner(
+        val desc: String,
+        val id: Int,
+        val imagePath: String,
+        val isVisible: Int,
+        val order: Int,
+        val title: String,
+        val type: Int,
+        val url: String
+)
+
 data class ArticleResp(
         val curPage: Int,
         val datas: MutableList<Article>,
@@ -42,16 +54,5 @@ data class Article(
 
 data class Tag(
         val name: String,
-        val url: String
-)
-
-data class Banner(
-        val desc: String,
-        val id: Int,
-        val imagePath: String,
-        val isVisible: Int,
-        val order: Int,
-        val title: String,
-        val type: Int,
         val url: String
 )

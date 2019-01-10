@@ -9,10 +9,17 @@ import io.reactivex.Observable
  */
 class HomeModel : HomeContract.Model {
 
-    override fun fetchBannerList(): Observable<HttpResult<MutableList<Banner>>> {
+    override fun fetchBanners(): Observable<HttpResult<MutableList<Banner>>> {
         return NetWorkManager
                 .getRetrofit()
                 .create(IHomeService::class.java)
-                .fetchBannerList()
+                .fetchBanners()
+    }
+
+    override fun fetchArticles(pageNum: Int): Observable<HttpResult<ArticleResp>> {
+        return NetWorkManager
+                .getRetrofit()
+                .create(IHomeService::class.java)
+                .fetchArticles(pageNum)
     }
 }

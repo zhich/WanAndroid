@@ -2,6 +2,7 @@ package com.zch.wanandroid.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,8 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
 
     private lateinit var homePresenter: HomeContract.Presenter
 
+    private lateinit var articleAdapter: ArticleAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -29,12 +32,19 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        articleAdapter = ArticleAdapter(mutableListOf())
+        rvArticleList.run {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = articleAdapter
+        }
+
         homePresenter = HomePresenter(this)
-        homePresenter.fetchBannerList()
+        homePresenter.fetchBanners()
+        homePresenter.fetchArticles(0)
     }
 
     @SuppressLint("CheckResult")
-    override fun onFetchBannerListSuccess(bannerList: MutableList<Banner>?) {
+    override fun onFetchBannersSuccess(bannerList: MutableList<Banner>?) {
         if (bannerList == null) {
             return
         }
@@ -64,5 +74,9 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
                 Toast.makeText(context, "跳转", Toast.LENGTH_SHORT).show()
             })
         }
+    }
+
+    override fun onFetchArticlesSuccess(articleResp: ArticleResp) {
+        articleAdapter.updateData(articleResp.datas)
     }
 }

@@ -10,9 +10,15 @@ class HomePresenter(var homeView: HomeContract.View) : RxLifeProvider(homeView),
 
     private val homeModel: HomeContract.Model = HomeModel()
 
-    override fun fetchBannerList() {
-        homeModel.fetchBannerList().ss({
-            homeView.onFetchBannerListSuccess(it.data)
+    override fun fetchBanners() {
+        homeModel.fetchBanners().ss({
+            homeView.onFetchBannersSuccess(it.data)
+        })
+    }
+
+    override fun fetchArticles(pageNum: Int) {
+        homeModel.fetchArticles(pageNum).ss({
+            homeView.onFetchArticlesSuccess(it.data!!)
         })
     }
 }

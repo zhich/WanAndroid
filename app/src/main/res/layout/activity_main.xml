@@ -57,7 +57,7 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/color_divider"
+            android:background="@color/colorDivider"
             app:layout_constraintBottom_toBottomOf="@+id/contentLayout"
             app:layout_constraintTop_toTopOf="@+id/tabLayout" />
 
@@ -80,7 +80,7 @@
         android:background="@color/white"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:itemIconTint="@color/color_item_nav_tv"
-        app:itemTextColor="@color/color_item_nav_tv"
+        app:itemIconTint="@color/colorItemNavTv"
+        app:itemTextColor="@color/colorItemNavTv"
         app:menu="@menu/menu_nav" />
 </android.support.v4.widget.DrawerLayout>

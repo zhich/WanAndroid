@@ -45,7 +45,6 @@ class NetWorkManager {
                             .retryOnConnectionFailure(true)
                             .addInterceptor(RepackParamsInterceptor())
                             .addInterceptor(loggingInterceptor)
-                            .addInterceptor(CheckLoginStateInterceptor())
                             .connectTimeout(60, TimeUnit.SECONDS)
                             .readTimeout(60, TimeUnit.SECONDS)
                             .writeTimeout(60, TimeUnit.SECONDS)

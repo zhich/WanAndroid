@@ -11,7 +11,7 @@
         android:scaleType="fitXY"
         app:banner_indicatorGravity="bottom|right"
         app:banner_placeholderDrawable="@drawable/shape_gray_default_bg"
-        app:banner_tipTextColor="@color/color_title_bg"
+        app:banner_tipTextColor="@color/colorTitleBg"
         app:banner_tipTextSize="@dimen/text_common_size"
         app:banner_transitionEffect="alpha" />
 
