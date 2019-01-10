@@ -13,16 +13,16 @@ interface HomeContract {
 
     interface View : IView {
 
-        fun setBanner(bannerList: MutableList<Banner>)
+        fun onFetchBannerListSuccess(bannerList: MutableList<Banner>?)
     }
 
     interface Presenter : IPresenter {
 
-        fun fetchBanner()
+        fun fetchBannerList()
     }
 
     interface Model : IModel {
 
-        fun fetchBanner(): Observable<HttpResult<MutableList<Banner>>>
+        fun fetchBannerList(): Observable<HttpResult<MutableList<Banner>>>
     }
 }

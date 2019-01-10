@@ -1,5 +1,6 @@
 package com.zch.wanandroid.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,16 +8,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import cn.bingoogolapple.bgabanner.BGABanner
+import com.zch.base.img.loader.ImageLoaderManager
+import com.zch.base.img.loader.ImageLoaderOptions
 import com.zch.base.rxlifecycle.RxLifecycleFragment
 import com.zch.wanandroid.R
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Created by zch on 2019/01/07.
  */
-class HomeFragment : RxLifecycleFragment() {
+class HomeFragment : RxLifecycleFragment(), HomeContract.View {
 
-    private lateinit var bannerList: MutableList<Banner>
+    private lateinit var homePresenter: HomeContract.Presenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -24,11 +28,33 @@ class HomeFragment : RxLifecycleFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBanner()
+
+        homePresenter = HomePresenter(this)
+        homePresenter.fetchBannerList()
     }
 
-    private fun initBanner() {
+    @SuppressLint("CheckResult")
+    override fun onFetchBannerListSuccess(bannerList: MutableList<Banner>?) {
+        if (bannerList == null) {
+            return
+        }
+        val imgPathList = mutableListOf<String>()
+        val titleList = mutableListOf<String>()
+        Observable.fromIterable(bannerList)
+                .subscribe {
+                    imgPathList.add(it.imagePath)
+                    titleList.add(it.title)
+                }
         banner.run {
+            setAutoPlayAble(imgPathList.size > 1)
+            setData(imgPathList, titleList)
+            setAdapter { _, imageView, imgUrl, _ ->
+                ImageLoaderManager.instance.showImage(imageView as ImageView, imgUrl as String, ImageLoaderOptions.Builder()
+                        .placeHolder(R.drawable.shape_gray_default_bg)
+                        .errorDrawable(R.drawable.shape_gray_default_bg)
+                        .build())
+            }
+
             setDelegate(BGABanner.Delegate<ImageView, String> { _, _, _, position ->
                 if (bannerList.size == 0) {
                     return@Delegate

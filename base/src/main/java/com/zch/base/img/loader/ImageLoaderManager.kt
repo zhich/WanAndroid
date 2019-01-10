@@ -21,17 +21,19 @@ class ImageLoaderManager private constructor() : ImageLoader {
 
     }
 
-    override fun showImage(imageView: ImageView, url: String?, options: ImageLoaderOptions) {
+    override fun showImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?) {
+        mImageLoader?.showImage(imageView, url, options)
     }
 
-    override fun showImage(imageView: ImageView, drawable: Int, options: ImageLoaderOptions) {
+    override fun showImage(imageView: ImageView, drawable: Int, options: ImageLoaderOptions?) {
+        mImageLoader?.showImage(imageView, drawable, options)
     }
 
-    override fun showRoundImage(imageView: ImageView, url: String?, options: ImageLoaderOptions) {
+    override fun showRoundImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?) {
         mImageLoader?.showRoundImage(imageView, url, options)
     }
 
-    override fun showRoundCornerImage(imageView: ImageView, url: String?, options: ImageLoaderOptions, radius: Int) {
+    override fun showRoundCornerImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?, radius: Int) {
         mImageLoader?.showRoundCornerImage(imageView, url, options, radius)
     }
 }

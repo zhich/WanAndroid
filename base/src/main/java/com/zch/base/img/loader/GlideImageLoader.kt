@@ -13,29 +13,35 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
  */
 class GlideImageLoader : ImageLoader {
 
-    override fun showImage(imageView: ImageView, url: String?, options: ImageLoaderOptions) {
-
+    override fun showImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?) {
+        Glide.with(imageView.context)
+                .load(url)
+                .apply(loadOptions(bitmapTransform(RoundedCornersTransformation(0, 0)), options))
+                .into(imageView)
     }
 
-    override fun showImage(imageView: ImageView, drawable: Int, options: ImageLoaderOptions) {
-
+    override fun showImage(imageView: ImageView, drawable: Int, options: ImageLoaderOptions?) {
+        Glide.with(imageView.context)
+                .load(drawable)
+                .apply(loadOptions(bitmapTransform(CircleCrop()), options))
+                .into(imageView)
     }
 
-    override fun showRoundImage(imageView: ImageView, url: String?, options: ImageLoaderOptions) {
+    override fun showRoundImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?) {
         Glide.with(imageView.context)
                 .load(url)
                 .apply(loadOptions(bitmapTransform(CircleCrop()), options))
                 .into(imageView)
     }
 
-    override fun showRoundCornerImage(imageView: ImageView, url: String?, options: ImageLoaderOptions, radius: Int) {
+    override fun showRoundCornerImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?, radius: Int) {
         Glide.with(imageView.context)
                 .load(url)
                 .apply(loadOptions(bitmapTransform(RoundedCornersTransformation(radius, 0)), options))
                 .into(imageView)
     }
 
-    private fun loadOptions(requestOptions: RequestOptions, options: ImageLoaderOptions): RequestOptions {
+    private fun loadOptions(requestOptions: RequestOptions, options: ImageLoaderOptions?): RequestOptions {
         if (options == null) {
             return requestOptions
         }

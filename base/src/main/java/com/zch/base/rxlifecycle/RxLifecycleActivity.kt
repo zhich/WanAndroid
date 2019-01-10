@@ -16,7 +16,7 @@ import io.reactivex.subjects.BehaviorSubject
 /**
  * Created by zch on 2019/01/04.
  */
-open class RxLifecycleActivity : AppCompatActivity(), LifecycleProvider<ActivityEvent> {
+open class RxLifecycleActivity : AppCompatActivity(), LifecycleProvider<ActivityEvent>, IView {
 
     private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
 
@@ -70,5 +70,11 @@ open class RxLifecycleActivity : AppCompatActivity(), LifecycleProvider<Activity
     override fun onDestroy() {
         lifecycleSubject.onNext(ActivityEvent.DESTROY)
         super.onDestroy()
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
     }
 }

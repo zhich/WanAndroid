@@ -1,5 +1,6 @@
 package com.zch.wanandroid.home
 
+import com.zch.base.rx.ss
 import com.zch.base.rxlifecycle.RxLifeProvider
 
 /**
@@ -7,7 +8,11 @@ import com.zch.base.rxlifecycle.RxLifeProvider
  */
 class HomePresenter(var homeView: HomeContract.View) : RxLifeProvider(homeView), HomeContract.Presenter {
 
-    override fun fetchBanner() {
+    private val homeModel: HomeContract.Model = HomeModel()
 
+    override fun fetchBannerList() {
+        homeModel.fetchBannerList().ss({
+            homeView.onFetchBannerListSuccess(it.data)
+        })
     }
 }

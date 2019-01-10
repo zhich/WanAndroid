@@ -7,11 +7,11 @@ import android.widget.ImageView
  */
 interface ImageLoader {
 
-    fun showImage(imageView: ImageView, url: String?, options: ImageLoaderOptions)
+    fun showImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?)
 
-    fun showImage(imageView: ImageView, drawable: Int, options: ImageLoaderOptions)
+    fun showImage(imageView: ImageView, drawable: Int, options: ImageLoaderOptions?)
 
-    fun showRoundImage(imageView: ImageView, url: String?, options: ImageLoaderOptions)
+    fun showRoundImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?)
 
-    fun showRoundCornerImage(imageView: ImageView, url: String?, options: ImageLoaderOptions, radius: Int)
+    fun showRoundCornerImage(imageView: ImageView, url: String?, options: ImageLoaderOptions?, radius: Int)
 }

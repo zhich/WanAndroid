@@ -17,7 +17,7 @@ import io.reactivex.subjects.BehaviorSubject
 /**
  * Created by zch on 2019/01/04.
  */
-open class RxLifecycleFragment : Fragment(), LifecycleProvider<FragmentEvent> {
+open class RxLifecycleFragment : Fragment(), LifecycleProvider<FragmentEvent>, IView {
 
     private val lifecycleSubject = BehaviorSubject.create<FragmentEvent>()
 
@@ -81,5 +81,11 @@ open class RxLifecycleFragment : Fragment(), LifecycleProvider<FragmentEvent> {
     override fun onDetach() {
         super.onDetach()
         lifecycleSubject.onNext(FragmentEvent.DETACH)
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
     }
 }
