@@ -12,6 +12,7 @@ import cn.bingoogolapple.bgabanner.BGABanner
 import com.zch.base.img.loader.ImageLoaderManager
 import com.zch.base.img.loader.ImageLoaderOptions
 import com.zch.base.rxlifecycle.RxLifecycleFragment
+import com.zch.base.widget.CustomDecoration
 import com.zch.wanandroid.R
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,6 +26,8 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
 
     private lateinit var articleAdapter: ArticleAdapter
 
+    private var isRefresh = true
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -36,6 +39,12 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
         rvArticleList.run {
             layoutManager = LinearLayoutManager(activity)
             adapter = articleAdapter
+            addItemDecoration(CustomDecoration(context))
+        }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            isRefresh = true
+            homePresenter.fetchArticles(0)
         }
 
         homePresenter = HomePresenter(this)
@@ -77,6 +86,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
     }
 
     override fun onFetchArticlesSuccess(articleResp: ArticleResp) {
-        articleAdapter.updateData(articleResp.datas)
+        articleAdapter.replaceData(articleResp.datas)
+        swipeRefreshLayout.isRefreshing = false
     }
 }
