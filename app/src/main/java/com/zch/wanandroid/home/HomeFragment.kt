@@ -41,9 +41,18 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
             adapter = articleAdapter
             addItemDecoration(CustomDecoration(context))
         }
+        articleAdapter.run {
+            bindToRecyclerView(rvArticleList)
+            setOnLoadMoreListener({
+                isRefresh = false
+                swipeRefreshLayout.isRefreshing = false
+                homePresenter.fetchArticles(data.size / 20)
+            }, rvArticleList)
+        }
 
         swipeRefreshLayout.setOnRefreshListener {
             isRefresh = true
+            articleAdapter.setEnableLoadMore(false)
             homePresenter.fetchArticles(0)
         }
 
@@ -86,7 +95,19 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
     }
 
     override fun onFetchArticlesSuccess(articleResp: ArticleResp) {
-        articleAdapter.replaceData(articleResp.datas)
-        swipeRefreshLayout.isRefreshing = false
+        articleResp.datas.let {
+            articleAdapter.run {
+                if (isRefresh) {
+                    replaceData(it)
+                } else {
+                    addData(it)
+                }
+                if (it.size < articleResp.size) {
+                    loadMoreEnd(isRefresh)
+                } else {
+                    loadMoreComplete()
+                }
+            }
+        }
     }
 }
