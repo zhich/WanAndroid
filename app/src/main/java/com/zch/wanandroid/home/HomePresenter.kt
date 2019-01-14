@@ -1,6 +1,7 @@
 package com.zch.wanandroid.home
 
 import com.zch.base.rx.ss
+import com.zch.base.rx.sss
 import com.zch.base.rxlifecycle.RxLifeProvider
 
 /**
@@ -17,7 +18,7 @@ class HomePresenter(var homeView: HomeContract.View) : RxLifeProvider(homeView),
     }
 
     override fun fetchArticles(pageNum: Int) {
-        homeModel.fetchArticles(pageNum).ss({
+        homeModel.fetchArticles(pageNum).sss(homeView, {
             homeView.onFetchArticlesSuccess(it.data!!)
         })
     }

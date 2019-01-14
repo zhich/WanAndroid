@@ -43,16 +43,14 @@ class MainActivity : RxLifecycleActivity() {
             setSupportActionBar(this)
         }
         drawerLayout.run {
-            drawerLayout.run {
-                val toggle = ActionBarDrawerToggle(
-                        this@MainActivity,
-                        this,
-                        toolbar
-                        , R.string.navigation_drawer_open,
-                        R.string.navigation_drawer_close)
-                addDrawerListener(toggle)
-                toggle.syncState()
-            }
+            val toggle = ActionBarDrawerToggle(
+                    this@MainActivity,
+                    this,
+                    toolbar
+                    , R.string.navigation_drawer_open,
+                    R.string.navigation_drawer_close)
+            addDrawerListener(toggle)
+            toggle.syncState()
         }
         navView.run {
             setNavigationItemSelectedListener {
@@ -112,12 +110,11 @@ class MainActivity : RxLifecycleActivity() {
     }
 
     private fun show(position: Int, transaction: FragmentTransaction) {
-        val tag = mTabsTitle[position]
-
-        val fragment = supportFragmentManager.findFragmentByTag(tag)
+        var tag = mTabsTitle[position]
+        var fragment = supportFragmentManager.findFragmentByTag(tag)
         if (fragment == null) {
-            val fragment = generateItemByIndex(position)
-            val tag = mTabsTitle[position]
+            fragment = generateItemByIndex(position)
+            tag = mTabsTitle[position]
             transaction.add(R.id.contentLayout, fragment, tag)
         } else {
             transaction.show(fragment)

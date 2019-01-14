@@ -40,6 +40,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
             layoutManager = LinearLayoutManager(activity)
             adapter = articleAdapter
             addItemDecoration(CustomDecoration(context))
+            isNestedScrollingEnabled = false
         }
         articleAdapter.run {
             bindToRecyclerView(rvArticleList)
@@ -108,6 +109,13 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
                     loadMoreComplete()
                 }
             }
+        }
+    }
+
+    override fun hideLoading() {
+        swipeRefreshLayout.isRefreshing = false
+        if (isRefresh) {
+            articleAdapter.setEnableLoadMore(true)
         }
     }
 }
