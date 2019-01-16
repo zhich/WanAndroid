@@ -14,14 +14,14 @@
         <TextView
             android:id="@+id/tvAuthor"
             style="@style/layout_wrap"
-            android:textColor="@color/colorCommonText"
+            android:textColor="@color/color_common_text"
             android:textSize="@dimen/text_small_size"
             tool:text="鸿洋" />
 
         <TextView
             android:id="@+id/tvDate"
             style="@style/layout_wrap"
-            android:textColor="@color/colorCommonText"
+            android:textColor="@color/color_common_text"
             android:textSize="@dimen/text_small_size"
             app:layout_constraintRight_toRightOf="parent"
             tool:text="2019/1/10" />
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/color_black"
         android:textSize="@dimen/text_common_size"
         tool:text="Android 开发高手课" />
 
@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/tvArticleCategory"
             style="@style/layout_wrap"
-            android:textColor="@color/colorCommonText"
+            android:textColor="@color/color_common_text"
             android:textSize="@dimen/text_small_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -10,8 +10,9 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.rxlifecycle.RxLifecycleActivity
-import com.zch.wanandroid.home.Banner
 import com.zch.wanandroid.home.HomeFragment
 import com.zch.wanandroid.navigation.NavigationFragment
 import com.zch.wanandroid.project.ProjectFragment
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Created by zch on 2019/01/04.
  */
+@Route(path = ARouterPathConstant.Main.MAIN_ACTIVITY)
 class MainActivity : RxLifecycleActivity() {
 
     private lateinit var mTabsIcon: IntArray

@@ -12,12 +12,11 @@ class ArticleAdapter(articles: MutableList<Article>) : BaseQuickAdapter<Article,
 
     override fun convert(helper: BaseViewHolder, item: Article) {
         item.run {
-            helper.run {
-                setText(R.id.tvAuthor, author)
-                setText(R.id.tvDate, DateUtil.long2Str(publishTime))
-                setText(R.id.tvTitle, title)
-                setText(R.id.tvArticleCategory, "$superChapterName/$chapterName")
-            }
+            helper.setText(R.id.tvAuthor, author)
+                    .setText(R.id.tvDate, DateUtil.long2Str(publishTime))
+                    .setText(R.id.tvTitle, title)
+                    .setText(R.id.tvArticleCategory, "$superChapterName/$chapterName")
+                    .addOnClickListener(R.id.ivCollect)
         }
     }
 }

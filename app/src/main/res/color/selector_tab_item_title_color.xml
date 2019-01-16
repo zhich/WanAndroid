@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- pressed -->
-    <item android:color="@color/colorGreen" android:state_selected="true" />
+    <item android:color="@color/color_theme" android:state_selected="true" />
     <!-- default -->
-    <item android:color="@color/colorBlack" />
+    <item android:color="@color/color_black" />
 
 
 </selector>

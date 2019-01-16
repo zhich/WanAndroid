@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivTagIcon"
+            style="@style/layout_wrap"
+            android:src="@drawable/ic_account_tag" />
+
+        <EditText
+            android:id="@+id/edtValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="@string/input_account_hint"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:singleLine="true"
+            android:textColor="@color/color_common_text"
+            android:textColorHint="@color/color_acacac"
+            android:textSize="@dimen/text_common_size" />
+
+        <ImageView
+            android:id="@+id/ivClearContent"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/selector_clear_content_ic"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ivMore"
+            style="@style/layout_wrap"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_more" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/color_dddddd" />
+
+</LinearLayout>
