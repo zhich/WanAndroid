@@ -3,5 +3,8 @@
     <color name="colorBottomTabBg">#ffffff</color>
 
     <color name="colorItemNavTv">#19191B</color>
-    <color name="colorTitleBg">#CCFFFFFF</color>
+    <color name="colorTitleBg">#ccffffff</color>
+    <color name="color_default_bg">#f2f2f2</color>
+    <color name="color_acacac">#acacac</color>
+    <color name="color_888888">#888888</color>
 </resources>

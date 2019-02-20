@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -15,6 +14,7 @@ import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.img.loader.ImageLoaderManager
 import com.zch.base.img.loader.ImageLoaderOptions
 import com.zch.base.rxlifecycle.RxLifecycleFragment
+import com.zch.base.utils.ToastUtil
 import com.zch.base.widget.CustomDecoration
 import com.zch.wanandroid.R
 import io.reactivex.Observable
@@ -54,7 +54,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
             }, rvArticleList)
             onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, view, _ ->
                 when (view.id) {
-                    R.id.ivCollect -> ARouter.getInstance().build(ARouterPathConstant.Login.LOGIN_ACTIVITY).navigation()
+                    R.id.ivCollect -> ARouter.getInstance().build(ARouterPathConstant.User.LOGIN_ACTIVITY).navigation()
                 }
             }
         }
@@ -98,7 +98,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
                 }
                 val item = bannerList[position]
                 // todo 跳转
-                Toast.makeText(context, "跳转", Toast.LENGTH_SHORT).show()
+                ToastUtil.showShortText("跳转")
             })
         }
     }

@@ -25,8 +25,7 @@
         openxu:layout_constraintHorizontal_bias="1.0"
         openxu:layout_constraintLeft_toLeftOf="parent"
         openxu:layout_constraintRight_toRightOf="parent"
-        openxu:layout_constraintTop_toBottomOf="@+id/ivMainLogo"
-        openxu:showMore="true" />
+        openxu:layout_constraintTop_toBottomOf="@+id/ivMainLogo" />
 
     <com.zch.base.widget.edt.PwdEditor
         android:id="@+id/viewPwd"
@@ -42,8 +41,22 @@
         openxu:layout_constraintRight_toRightOf="parent"
         openxu:layout_constraintTop_toBottomOf="@id/viewAccount" />
 
+    <com.zch.base.widget.edt.PwdEditor
+        android:id="@+id/viewRePwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        openxu:hint="@string/input_re_pwd_hint"
+        openxu:iconTag="@drawable/ic_pwd_tag"
+        openxu:layout_constraintHorizontal_bias="1.0"
+        openxu:layout_constraintLeft_toLeftOf="parent"
+        openxu:layout_constraintRight_toRightOf="parent"
+        openxu:layout_constraintTop_toBottomOf="@id/viewPwd" />
+
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="26dp"
@@ -51,22 +64,22 @@
         android:layout_marginRight="26dp"
         android:background="@drawable/selector_theme_body_coner_bg"
         android:padding="12dp"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textColor="@color/color_white"
         android:textSize="@dimen/text_common_size"
         openxu:layout_constraintLeft_toLeftOf="parent"
         openxu:layout_constraintRight_toRightOf="parent"
-        openxu:layout_constraintTop_toBottomOf="@id/viewPwd" />
+        openxu:layout_constraintTop_toBottomOf="@id/viewRePwd" />
 
     <TextView
-        android:id="@+id/tvGoToRegister"
+        android:id="@+id/tvGoToLogin"
         style="@style/layout_wrap"
         android:layout_marginStart="26dp"
         android:layout_marginTop="26dp"
-        android:text="@string/go_to_register_hint"
+        android:text="@string/go_to_login_hint"
         android:textColor="@color/selector_gray_color"
         android:textSize="14sp"
         openxu:layout_constraintLeft_toLeftOf="parent"
-        openxu:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        openxu:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
 </android.support.constraint.ConstraintLayout>

@@ -9,7 +9,8 @@ class ARouterPathConstant {
         const val MAIN_ACTIVITY = "/Main/MainActivity"
     }
 
-    object Login {
-        const val LOGIN_ACTIVITY = "/Login/LoginActivity"
+    object User {
+        const val LOGIN_ACTIVITY = "/User/LoginActivity"
+        const val REGISTER_ACTIVITY = "/User/RegisterActivity"
     }
 }

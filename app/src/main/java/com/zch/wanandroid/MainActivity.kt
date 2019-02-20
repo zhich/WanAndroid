@@ -9,10 +9,10 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.rxlifecycle.RxLifecycleActivity
+import com.zch.base.utils.ToastUtil
 import com.zch.wanandroid.home.HomeFragment
 import com.zch.wanandroid.navigation.NavigationFragment
 import com.zch.wanandroid.project.ProjectFragment
@@ -57,10 +57,10 @@ class MainActivity : RxLifecycleActivity() {
         navView.run {
             setNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.nav_collect -> Toast.makeText(baseContext, "收藏", Toast.LENGTH_SHORT).show()
-                    R.id.nav_todo -> Toast.makeText(baseContext, "待办", Toast.LENGTH_SHORT).show()
-                    R.id.nav_settings -> Toast.makeText(baseContext, "设置", Toast.LENGTH_SHORT).show()
-                    R.id.nav_logout -> Toast.makeText(baseContext, "退出登录", Toast.LENGTH_SHORT).show()
+                    R.id.nav_collect -> ToastUtil.showShortText("收藏")
+                    R.id.nav_todo -> ToastUtil.showShortText("待办")
+                    R.id.nav_settings -> ToastUtil.showShortText("设置")
+                    R.id.nav_logout -> ToastUtil.showShortText("退出登录")
                 }
                 true
             }
@@ -149,7 +149,7 @@ class MainActivity : RxLifecycleActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_search -> {
-                Toast.makeText(baseContext, "搜索", Toast.LENGTH_SHORT).show()
+                ToastUtil.showShortText("搜索")
                 return true
             }
         }

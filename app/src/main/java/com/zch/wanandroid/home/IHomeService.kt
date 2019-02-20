@@ -10,7 +10,7 @@ import retrofit2.http.Path
  */
 interface IHomeService {
 
-    @GET("banner/json")
+    @GET("/banner/json")
     fun fetchBanners(): Observable<HttpResult<MutableList<Banner>>>
 
     @GET("/article/list/{pageNum}/json")

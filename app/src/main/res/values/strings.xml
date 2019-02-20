@@ -10,7 +10,6 @@
     <string name="tab_navigation">导航</string>
     <string name="tab_project">项目</string>
 
-    <string name="login">登录</string>
 
     <string name="nav_collect">收藏</string>
     <string name="nav_todo">待办</string>
@@ -18,4 +17,16 @@
     <string name="nav_logout">退出登录</string>
 
     <string name="action_search">搜索</string>
+
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+
+    <string name="go_to_register_hint">没有账号？去注册</string>
+    <string name="go_to_login_hint">已有账号？去登录</string>
+    <string name="account_can_not_empty">账号不能为空</string>
+    <string name="pwd_can_not_empty">密码不能为空</string>
+    <string name="re_pwd_can_not_empty">确认密码不能为空</string>
+    <string name="pwd_do_not_match">两次输入的密码不一致</string>
+    <string name="register_success_hint">注册成功</string>
+    <string name="login_success_hint">登录成功</string>
 </resources>

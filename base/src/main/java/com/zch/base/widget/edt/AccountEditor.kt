@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import com.zch.base.R
 
@@ -28,6 +29,10 @@ class AccountEditor @JvmOverloads constructor(context: Context, attrs: Attribute
 
         val hint: String = ta.getString(R.styleable.BaseEditor_hint)
         val iconResId: Int = ta.getResourceId(R.styleable.BaseEditor_iconTag, -1)
+        val showMore: Boolean = ta.getBoolean(R.styleable.BaseEditor_showMore, false)
+        if (showMore) {
+            ivMore.visibility = View.VISIBLE
+        }
 
         ta.recycle()
 
