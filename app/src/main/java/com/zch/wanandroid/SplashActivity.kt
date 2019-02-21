@@ -14,7 +14,7 @@ class SplashActivity : RxLifecycleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        ARouter.getInstance().build(ARouterPathConstant.User.LOGIN_ACTIVITY).navigation()
+        ARouter.getInstance().build(ARouterPathConstant.Main.MAIN_ACTIVITY).navigation()
         finish()
     }
 }

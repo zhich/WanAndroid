@@ -29,4 +29,7 @@
     <string name="pwd_do_not_match">两次输入的密码不一致</string>
     <string name="register_success_hint">注册成功</string>
     <string name="login_success_hint">登录成功</string>
+    <string name="no_history_account_hint">首次使用，暂无登录账号</string>
+    <string name="is_delete_account_hint">是否删除%s账号登录信息？</string>
+    <string name="sure_to_logout_hint">确定要退出登录吗？</string>
 </resources>

@@ -1,15 +1,20 @@
 package com.zch.wanandroid
 
+import android.arch.lifecycle.Observer
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
+import com.zch.base.LiveDataEventManager
+import com.zch.base.cache.LoginCache
 import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.rxlifecycle.RxLifecycleActivity
 import com.zch.base.utils.ToastUtil
@@ -37,6 +42,21 @@ class MainActivity : RxLifecycleActivity() {
 
         initViews()
         initTabs()
+
+        LiveDataEventManager.with(LiveDataEventManager.EVENT_LOGIN_SUCCESS).observe(this, Observer {
+            if (it == true) {
+                tvNavUsername?.text = LoginCache.getCurrentAccount()
+                navView.menu.findItem(R.id.nav_logout).isVisible = true
+            } else {
+                tvNavUsername?.text = getString(R.string.login)
+                navView.menu.findItem(R.id.nav_logout).isVisible = false
+            }
+        })
+    }
+
+    override fun onDestroy() {
+        LiveDataEventManager.remove(LiveDataEventManager.EVENT_LOGIN_SUCCESS, this)
+        super.onDestroy()
     }
 
     private fun initViews() {
@@ -60,12 +80,29 @@ class MainActivity : RxLifecycleActivity() {
                     R.id.nav_collect -> ToastUtil.showShortText("收藏")
                     R.id.nav_todo -> ToastUtil.showShortText("待办")
                     R.id.nav_settings -> ToastUtil.showShortText("设置")
-                    R.id.nav_logout -> ToastUtil.showShortText("退出登录")
+                    R.id.nav_logout -> {
+                        AlertDialog.Builder(this@MainActivity)
+                                .setTitle(getString(R.string.tip))
+                                .setMessage(getString(R.string.sure_to_logout_hint))
+                                .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                                    // todo logout
+                                }
+                                .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
+                                .show()
+                    }
                 }
                 true
             }
             tvNavUsername = getHeaderView(0).findViewById(R.id.tvUsername)
-
+            menu.findItem(R.id.nav_logout).isVisible = LoginCache.isLogin()
+            tvNavUsername?.run {
+                text = if (LoginCache.isLogin()) LoginCache.getCurrentAccount() else getString(R.string.login)
+                setOnClickListener {
+                    if (!LoginCache.isLogin()) {
+                        ARouter.getInstance().build(ARouterPathConstant.User.LOGIN_ACTIVITY).navigation()
+                    }
+                }
+            }
             // todo navView
         }
     }

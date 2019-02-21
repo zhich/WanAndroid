@@ -1,10 +1,20 @@
 package com.zch.wanandroid.user.login
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.zch.base.LiveDataEventManager
+import com.zch.base.cache.LoginCache
 import com.zch.base.constant.ARouterPathConstant
+import com.zch.base.db.User
+import com.zch.base.db.UserRepo
 import com.zch.base.rxlifecycle.RxLifecycleActivity
+import com.zch.base.utils.ListUtil
 import com.zch.base.utils.ToastUtil
 import com.zch.wanandroid.R
 import com.zch.wanandroid.user.LoginResp
@@ -20,9 +30,21 @@ class LoginActivity : RxLifecycleActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        viewAccount.run {
+            setContent(LoginCache.getCurrentAccount())
+            getEditText().setSelection(getContent().length)
+        }
+
+        viewAccount.ivMore.setOnClickListener {
+            val userList = UserRepo.getUserList()
+            if (ListUtil.isEmpty(userList)) {
+                ToastUtil.showShortText(getString(R.string.no_history_account_hint))
+                return@setOnClickListener
+            }
+            showHistoryAccountDialog(userList!!)
+        }
+
         btnLogin.setOnClickListener {
-            //            ARouter.getInstance().build(ARouterPathConstant.Main.MAIN_ACTIVITY).navigation()
-//            finish()
             if (checkValidity()) {
                 LoginPresenter(this).login(viewAccount.getContent(), viewPwd.getContent())
             }
@@ -31,6 +53,54 @@ class LoginActivity : RxLifecycleActivity(), LoginContract.View {
         tvGoToRegister.setOnClickListener {
             ARouter.getInstance().build(ARouterPathConstant.User.REGISTER_ACTIVITY).navigation()
         }
+    }
+
+    private fun showHistoryAccountDialog(userList: MutableList<User>) {
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_history_account, null)
+        val dialog: AlertDialog = AlertDialog.Builder(this).create()
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.viewHistoryAccount)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val historyAccountAdapter = HistoryAccountAdapter(userList)
+        recyclerView.adapter = historyAccountAdapter.run {
+            bindToRecyclerView(recyclerView)
+            onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+                viewAccount.run {
+                    setContent(userList[position].account)
+                    getEditText().setSelection(getContent().length)
+                }
+                dialog.dismiss()
+            }
+            onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, view, position ->
+                when (view.id) {
+                    R.id.ivDelete -> {
+                        dialog.dismiss()
+                        showDeleteHistoryAccountDialog(userList[position])
+                    }
+                }
+            }
+            this
+        }
+
+        dialog.show()
+        dialog.window.setContentView(view)
+    }
+
+    private fun showDeleteHistoryAccountDialog(user: User) {
+        AlertDialog.Builder(this)
+                .setTitle(getString(R.string.tip))
+                .setMessage(getString(R.string.is_delete_account_hint, user.account))
+                .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                    dialog.dismiss()
+                    viewAccount.setContent("")
+                    UserRepo.delete(user.account!!)
+                    if (user.account == LoginCache.getCurrentAccount()) {
+                        LoginCache.setCurrentAccount("")
+                    }
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
+                .show()
     }
 
     private fun checkValidity(): Boolean {
@@ -47,6 +117,8 @@ class LoginActivity : RxLifecycleActivity(), LoginContract.View {
 
     override fun onLoginSuccess(loginResp: LoginResp?) {
         ToastUtil.showShortText(getString(R.string.login_success_hint))
+        LiveDataEventManager.with(LiveDataEventManager.EVENT_LOGIN_SUCCESS).value = true
+        finish()
     }
 
     override fun onLoginFail(errMsg: String) {

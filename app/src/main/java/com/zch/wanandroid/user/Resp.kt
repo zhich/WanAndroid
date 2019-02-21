@@ -5,7 +5,7 @@ package com.zch.wanandroid.user
  */
 data class LoginResp(
         val chapterTops: MutableList<String>,
-        val collectIds: MutableList<String>,
+        val collectIds: MutableList<Int>,
         val email: String,
         val icon: String,
         val id: Int,
