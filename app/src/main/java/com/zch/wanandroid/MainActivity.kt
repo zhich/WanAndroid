@@ -1,13 +1,13 @@
 package com.zch.wanandroid
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AlertDialog
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
@@ -148,7 +148,7 @@ class MainActivity : RxLifecycleActivity() {
         }
     }
 
-    private fun show(position: Int, transaction: FragmentTransaction) {
+    private fun show(position: Int, transaction: androidx.fragment.app.FragmentTransaction) {
         var tag = mTabsTitle[position]
         var fragment = supportFragmentManager.findFragmentByTag(tag)
         if (fragment == null) {
@@ -160,7 +160,7 @@ class MainActivity : RxLifecycleActivity() {
         }
     }
 
-    private fun generateItemByIndex(i: Int): Fragment {
+    private fun generateItemByIndex(i: Int): androidx.fragment.app.Fragment {
         return when (i) {
             0 -> HomeFragment()
             1 -> KnowledgeHierarchyFragment()
@@ -170,7 +170,7 @@ class MainActivity : RxLifecycleActivity() {
         }
     }
 
-    private fun hide(position: Int, transaction: FragmentTransaction) {
+    private fun hide(position: Int, transaction: androidx.fragment.app.FragmentTransaction) {
         val tag = mTabsTitle[position]
         val fragment = supportFragmentManager.findFragmentByTag(tag)
         if (fragment != null) {
@@ -183,7 +183,7 @@ class MainActivity : RxLifecycleActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
             R.id.action_search -> {
                 ToastUtil.showShortText("搜索")

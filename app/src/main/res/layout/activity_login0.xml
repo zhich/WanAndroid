@@ -1,0 +1,72 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:openxu="http://schemas.android.com/apk/res-auto"
+    style="@style/layout_full">
+
+    <ImageView
+        android:id="@+id/ivMainLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        openxu:layout_constraintLeft_toLeftOf="parent"
+        openxu:layout_constraintRight_toRightOf="parent"
+        openxu:layout_constraintTop_toTopOf="parent"
+        openxu:layout_constraintVertical_bias="0.23000002"
+        openxu:srcCompat="@drawable/ic_default_person" />
+
+    <com.zch.base.widget.edt.AccountEditor
+        android:id="@+id/viewAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        openxu:hint="@string/input_account_hint"
+        openxu:iconTag="@drawable/ic_account_tag"
+        openxu:layout_constraintHorizontal_bias="1.0"
+        openxu:layout_constraintLeft_toLeftOf="parent"
+        openxu:layout_constraintRight_toRightOf="parent"
+        openxu:layout_constraintTop_toBottomOf="@+id/ivMainLogo"
+        openxu:showMore="true" />
+
+    <com.zch.base.widget.edt.PwdEditor
+        android:id="@+id/viewPwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        openxu:hint="@string/input_pwd_hint"
+        openxu:iconTag="@drawable/ic_pwd_tag"
+        openxu:layout_constraintHorizontal_bias="1.0"
+        openxu:layout_constraintLeft_toLeftOf="parent"
+        openxu:layout_constraintRight_toRightOf="parent"
+        openxu:layout_constraintTop_toBottomOf="@id/viewAccount" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="26dp"
+        android:background="@drawable/selector_theme_body_coner_bg"
+        android:padding="12dp"
+        android:text="@string/login"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_common_size"
+        openxu:layout_constraintLeft_toLeftOf="parent"
+        openxu:layout_constraintRight_toRightOf="parent"
+        openxu:layout_constraintTop_toBottomOf="@id/viewPwd" />
+
+    <TextView
+        android:id="@+id/tvGoToRegister"
+        style="@style/layout_wrap"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/go_to_register_hint"
+        android:textColor="@color/selector_gray_color"
+        android:textSize="14sp"
+        openxu:layout_constraintLeft_toLeftOf="parent"
+        openxu:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

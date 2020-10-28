@@ -1,6 +1,6 @@
 ## API
 
-[玩 Android 开放 API](http://www.wanandroid.com/blog/show/2)
+[玩 Android 开放 API](https://www.wanandroid.com/blog/show/2)
 
 ## 主要功能
 

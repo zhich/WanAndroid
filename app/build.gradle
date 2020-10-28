@@ -1,21 +1,23 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion Versions.compileSdk
 
     defaultConfig {
         applicationId "com.zch.wanandroid"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
 
         flavorDimensions "default"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         vectorDrawables.useSupportLibrary = true
 
@@ -26,7 +28,7 @@ android {
 
     productFlavors {
         online {
-            manifestPlaceholders.put("baseUrl", "http://www.wanandroid.com")
+            manifestPlaceholders.put("baseUrl", "https://www.wanandroid.com")
         }
     }
 
@@ -51,6 +53,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 kapt {
@@ -60,18 +66,8 @@ kapt {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':base')
-
-    implementation("com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion") {
-        exclude group: 'animated-vector-drawable'
-    }
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
-    testImplementation "junit:junit:$rootProject.ext.junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-    implementation "com.alibaba:arouter-api:$rootProject.ext.arouterApi"
+    api project(':common')
+    api project(':user')
     kapt "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompiler"
 
     implementation "cn.bingoogolapple:bga-banner:$rootProject.ext.bannerVersion"

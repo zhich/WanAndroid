@@ -1,0 +1,96 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'realm-android'
+}
+
+android {
+    compileSdkVersion Versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        vectorDrawables.useSupportLibrary = true
+
+        ndk {
+            // 设置支持的 so 库架构（开发者可以根据需要，选择一个或多个平台的 so）
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api Deps.kotlin_stdlib
+    api Deps.core_ktx
+    api Deps.appcompat
+    api Deps.constraintlayout
+    api Deps.material
+    api Deps.coroutines_android
+    api Deps.retrofit
+    api Deps.retrofit_converter_gson
+    api Deps.okhttp_logging_interceptor
+    api Deps.viewmodel_ktx
+    api Deps.koin_android
+    api Deps.koin_androidx_scope
+    api Deps.koin_androidx_viewmodel
+
+    testApi 'junit:junit:4.+'
+    androidTestApi 'androidx.test.ext:junit:1.1.2'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.3.0'
+
+    api("com.trello.rxlifecycle2:rxlifecycle-kotlin:$rootProject.ext.rxlifecycleVersion") {
+        exclude module: 'support-annotations'
+    }
+
+    api("com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:$rootProject.ext.rxlifecycleVersion") {
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-annotations'
+    }
+
+    // alternatively - just ViewModel
+    api 'androidx.lifecycle:lifecycle-viewmodel:2.0.0' // use -ktx for Kotlin
+    // alternatively - just LiveData
+    api 'androidx.lifecycle:lifecycle-livedata:2.0.0'
+    api 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    api "com.alibaba:arouter-api:$rootProject.ext.arouterApi"
+    kapt "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompiler"
+
+    api "com.yanzhenjie:permission:$rootProject.ext.runtimePermissionVersion"
+
+    api "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    api "jp.wasabeef:glide-transformations:$rootProject.ext.glideTransformationsVersion"
+
+    api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
+    api "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofit2Rxjava2AdapterVersion"
+
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.ext.recyclerViewAdapterHelperVersion"
+
+}

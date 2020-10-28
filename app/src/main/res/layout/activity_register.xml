@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:openxu="http://schemas.android.com/apk/res-auto"
     style="@style/layout_full">
 
@@ -82,4 +82,4 @@
         openxu:layout_constraintLeft_toLeftOf="parent"
         openxu:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

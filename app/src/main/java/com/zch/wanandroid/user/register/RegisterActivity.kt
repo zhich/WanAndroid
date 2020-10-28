@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 /**
  * Created by zch on 2019/02/20.
  */
-@Route(path = ARouterPathConstant.User.REGISTER_ACTIVITY)
+//@Route(path = ARouterPathConstant.User.REGISTER_ACTIVITY)
 class RegisterActivity : RxLifecycleActivity(), RegisterContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {

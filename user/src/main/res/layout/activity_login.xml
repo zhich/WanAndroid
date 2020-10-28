@@ -1,0 +1,88 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.zch.user.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/layout_full">
+
+        <ImageView
+            android:id="@+id/ivMainLogo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.23000002"
+            app:srcCompat="@drawable/ic_default_person" />
+
+        <com.zch.base.widget.edt.AccountEditor
+            android:id="@+id/viewAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:hint="@string/input_account_hint"
+            app:iconTag="@drawable/ic_account_tag"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivMainLogo"
+            app:showMore="true"
+            binding:afterTextChanged="@{viewModel.verifyInput}"
+            binding:edtVal="@{viewModel.username}" />
+
+        <com.zch.base.widget.edt.PwdEditor
+            android:id="@+id/viewPwd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:hint="@string/input_pwd_hint"
+            app:iconTag="@drawable/ic_pwd_tag"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewAccount"
+            binding:afterTextChanged="@{viewModel.verifyInput}"
+            binding:edtVal="@{viewModel.password}" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/selector_theme_body_coner_bg"
+            android:enabled="@{viewModel.uiState.enableLoginButton}"
+            android:onClick="@{() -> viewModel.login()}"
+            android:padding="12dp"
+            android:text="@string/login"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_common_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewPwd" />
+
+        <TextView
+            android:id="@+id/tvGoToRegister"
+            style="@style/layout_wrap"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:text="@string/go_to_register_hint"
+            android:textColor="@color/selector_gray_color"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

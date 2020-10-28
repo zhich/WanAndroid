@@ -1,11 +1,8 @@
 package com.zch.wanandroid.user.login
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zch.base.LiveDataEventManager
@@ -18,17 +15,17 @@ import com.zch.base.utils.ListUtil
 import com.zch.base.utils.ToastUtil
 import com.zch.wanandroid.R
 import com.zch.wanandroid.user.LoginResp
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login0.*
 
 /**
  * Created by zch on 2019/01/16.
  */
-@Route(path = ARouterPathConstant.User.LOGIN_ACTIVITY)
+//@Route(path = ARouterPathConstant.User.LOGIN_ACTIVITY)
 class LoginActivity : RxLifecycleActivity(), LoginContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_login0)
 
         viewAccount.run {
             setContent(LoginCache.getCurrentAccount())
@@ -59,8 +56,8 @@ class LoginActivity : RxLifecycleActivity(), LoginContract.View {
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_history_account, null)
         val dialog: AlertDialog = AlertDialog.Builder(this).create()
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.viewHistoryAccount)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val recyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.viewHistoryAccount)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
         val historyAccountAdapter = HistoryAccountAdapter(userList)
         recyclerView.adapter = historyAccountAdapter.run {
@@ -84,7 +81,7 @@ class LoginActivity : RxLifecycleActivity(), LoginContract.View {
         }
 
         dialog.show()
-        dialog.window.setContentView(view)
+        dialog.window?.setContentView(view)
     }
 
     private fun showDeleteHistoryAccountDialog(user: User) {

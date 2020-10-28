@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="color_theme">#32CD74</color>
+    <color name="color_theme_press">#32CD84</color>
+
+    <color name="color_black">#333333</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_divider">#f2f2f2</color>
+    <color name="color_common_text">#525252</color>
+
+    <color name="color_acacac">#acacac</color>
+    <color name="color_dddddd">#dddddd</color>
+    <color name="color_888888">#888888</color>
+    <color name="color_afafaf">#afafaf</color>
+</resources>

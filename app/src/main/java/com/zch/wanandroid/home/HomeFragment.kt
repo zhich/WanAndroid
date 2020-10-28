@@ -2,7 +2,7 @@ package com.zch.wanandroid.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +40,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
 
         articleAdapter = ArticleAdapter(mutableListOf())
         rvArticleList.run {
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
             adapter = articleAdapter
             addItemDecoration(CustomDecoration(context))
             isNestedScrollingEnabled = false
