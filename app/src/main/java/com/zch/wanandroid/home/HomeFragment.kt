@@ -2,7 +2,6 @@ package com.zch.wanandroid.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,10 @@ import cn.bingoogolapple.bgabanner.BGABanner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zch.base.constant.ARouterPathConstant
+import com.zch.base.ext.toast
 import com.zch.base.img.loader.ImageLoaderManager
 import com.zch.base.img.loader.ImageLoaderOptions
 import com.zch.base.rxlifecycle.RxLifecycleFragment
-import com.zch.base.utils.ToastUtil
 import com.zch.base.widget.CustomDecoration
 import com.zch.wanandroid.R
 import io.reactivex.Observable
@@ -98,7 +97,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
                 }
                 val item = bannerList[position]
                 // todo 跳转
-                ToastUtil.showShortText("跳转")
+                toast("跳转")
             })
         }
     }

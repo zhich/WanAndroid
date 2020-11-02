@@ -8,5 +8,11 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/PublicAppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".register.RegisterActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/PublicAppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 </manifest>

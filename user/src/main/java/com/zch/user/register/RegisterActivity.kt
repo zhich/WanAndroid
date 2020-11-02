@@ -1,30 +1,27 @@
-package com.zch.user.login
+package com.zch.user.register
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.ext.handleInputContent
 import com.zch.base.ext.hideKeyboard
 import com.zch.base.ext.longToast
 import com.zch.common.base.BaseVMActivity
 import com.zch.user.R
-import com.zch.user.databinding.ActivityLoginBinding
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.zch.user.databinding.ActivityRegisterBinding
+import kotlinx.android.synthetic.main.activity_register.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
- * Created by zch on 2020-10-21.
+ * Created by zch on 2020-11-02.
  */
-@Route(path = ARouterPathConstant.User.LOGIN_ACTIVITY)
-class LoginActivity : BaseVMActivity() {
+@Route(path = ARouterPathConstant.User.REGISTER_ACTIVITY)
+class RegisterActivity : BaseVMActivity() {
 
-    private val binding by binding<ActivityLoginBinding>(R.layout.activity_login)
-    private val loginViewModel by viewModel<LoginViewModel>()
+    private val binding by binding<ActivityRegisterBinding>(R.layout.activity_register)
+    private val registerViewModel by viewModel<RegisterViewModel>()
 
-    @ExperimentalCoroutinesApi
     override fun startObserve() {
-        loginViewModel.uiState.observe(this, {
+        registerViewModel.uiState.observe(this, {
             if (it.isLoading) {
                 hideKeyboard()
             }
@@ -34,15 +31,19 @@ class LoginActivity : BaseVMActivity() {
             it.isError?.let {
                 longToast(it)
             }
+            if (it.needLogin) {
+                finish()
+            }
         })
     }
 
     override fun initView() {
-        binding.viewModel = loginViewModel
+        binding.viewModel = registerViewModel
         edtAccount.handleInputContent(ivClearAccount)
         edtPassword.handleInputContent(ivClearPassword)
-        tvGoToRegister.setOnClickListener {
-            ARouter.getInstance().build(ARouterPathConstant.User.REGISTER_ACTIVITY).navigation()
+        edtRepassword.handleInputContent(ivClearRepassword)
+        tvGoToLogin.setOnClickListener {
+            finish()
         }
     }
 

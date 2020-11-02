@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.zch.user.login.LoginViewModel" />
+            type="com.zch.user.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/layout_full">
@@ -154,8 +154,78 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/llRepassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llPassword">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    style="@style/layout_wrap"
+                    android:src="@drawable/ic_pwd_tag" />
+
+                <EditText
+                    android:id="@+id/edtRepassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:hint="@string/input_re_pwd_hint"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:singleLine="true"
+                    android:text="@={viewModel.repassword}"
+                    android:textColor="@color/color_common_text"
+                    android:textColorHint="@color/color_acacac"
+                    android:textSize="@dimen/text_common_size"
+                    binding:afterTextChanged="@{viewModel.verifyInput}"
+                    binding:passwordVisible="@{viewModel.repasswordVisible}" />
+
+                <ImageView
+                    android:id="@+id/ivClearRepassword"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/selector_clear_content_ic"
+                    android:visibility="gone" />
+
+                <ImageView
+                    style="@style/layout_wrap"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:onClick="@{()->viewModel.repasswordVisibleClick()}"
+                    android:src="@drawable/ic_pwd_visible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/color_dddddd" />
+
+        </LinearLayout>
+
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="26dp"
@@ -163,25 +233,25 @@
             android:layout_marginRight="26dp"
             android:background="@drawable/selector_theme_body_coner_bg"
             android:enabled="@{viewModel.uiState.enableLoginButton}"
-            android:onClick="@{() -> viewModel.login()}"
+            android:onClick="@{() -> viewModel.register()}"
             android:padding="12dp"
-            android:text="@string/login"
+            android:text="@string/register"
             android:textColor="@color/color_white"
             android:textSize="@dimen/text_common_size"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llPassword" />
+            app:layout_constraintTop_toBottomOf="@id/llRepassword" />
 
         <TextView
-            android:id="@+id/tvGoToRegister"
+            android:id="@+id/tvGoToLogin"
             style="@style/layout_wrap"
             android:layout_marginStart="26dp"
             android:layout_marginTop="26dp"
-            android:text="@string/go_to_register_hint"
+            android:text="@string/go_to_login_hint"
             android:textColor="@color/selector_gray_color"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

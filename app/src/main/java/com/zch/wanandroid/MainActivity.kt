@@ -4,8 +4,6 @@ import androidx.lifecycle.Observer
 import android.content.res.TypedArray
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import android.view.*
@@ -16,8 +14,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.zch.base.LiveDataEventManager
 import com.zch.base.cache.LoginCache
 import com.zch.base.constant.ARouterPathConstant
+import com.zch.base.ext.toast
 import com.zch.base.rxlifecycle.RxLifecycleActivity
-import com.zch.base.utils.ToastUtil
 import com.zch.wanandroid.home.HomeFragment
 import com.zch.wanandroid.navigation.NavigationFragment
 import com.zch.wanandroid.project.ProjectFragment
@@ -77,9 +75,9 @@ class MainActivity : RxLifecycleActivity() {
         navView.run {
             setNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.nav_collect -> ToastUtil.showShortText("收藏")
-                    R.id.nav_todo -> ToastUtil.showShortText("待办")
-                    R.id.nav_settings -> ToastUtil.showShortText("设置")
+                    R.id.nav_collect -> toast("收藏")
+                    R.id.nav_todo -> toast("待办")
+                    R.id.nav_settings -> toast("设置")
                     R.id.nav_logout -> {
                         AlertDialog.Builder(this@MainActivity)
                                 .setTitle(getString(R.string.tip))
@@ -186,7 +184,7 @@ class MainActivity : RxLifecycleActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
             R.id.action_search -> {
-                ToastUtil.showShortText("搜索")
+                toast("搜索")
                 return true
             }
         }

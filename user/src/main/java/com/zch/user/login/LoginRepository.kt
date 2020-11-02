@@ -10,6 +10,7 @@ import com.zch.common.api.doSuccess
 import com.zch.common.base.BaseRepository
 import com.zch.common.bean.UserBean
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -18,8 +19,9 @@ import kotlinx.coroutines.flow.onStart
 /**
  * Created by zch on 2020-10-21.
  */
-class LoginRepository(val api: WanApi) : BaseRepository() {
+class LoginRepository(private val api: WanApi) : BaseRepository() {
 
+    @ExperimentalCoroutinesApi
     suspend fun login(username: String, password: String) = flow {
         api.login(username, password).doSuccess {
             val user: User = it.let {
