@@ -17,12 +17,12 @@ import com.zch.base.rxlifecycle.RxLifecycleFragment
 import com.zch.base.widget.CustomDecoration
 import com.zch.wanandroid.R
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home0.*
 
 /**
  * Created by zch on 2019/01/07.
  */
-class HomeFragment : RxLifecycleFragment(), HomeContract.View {
+class HomeFragment0 : RxLifecycleFragment(), HomeContract.View {
 
     private lateinit var homePresenter: HomeContract.Presenter
 
@@ -31,7 +31,7 @@ class HomeFragment : RxLifecycleFragment(), HomeContract.View {
     private var isRefresh = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_home0, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

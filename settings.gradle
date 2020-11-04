@@ -1,3 +1,4 @@
+include ':hometabs'
 include ':user'
 include ':common'
 include ':app', ':lib_base'

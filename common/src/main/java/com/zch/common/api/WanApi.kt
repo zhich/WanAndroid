@@ -10,11 +10,11 @@ import retrofit2.http.POST
  */
 interface WanApi {
 
+    @POST("/user/register")
+    @FormUrlEncoded
+    suspend fun register(@Field("username") username: String, @Field("password") password: String, @Field("repassword") repassword: String): HttpResult<UserBean>
+
     @FormUrlEncoded
     @POST("/user/login")
     suspend fun login(@Field("username") userName: String, @Field("password") passWord: String): HttpResult<UserBean>
-
-    @POST("/user/register")
-    @FormUrlEncoded
-    fun register(@Field("username") username: String, @Field("password") password: String, @Field("repassword") repassword: String): HttpResult<UserBean>
 }

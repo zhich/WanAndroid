@@ -16,7 +16,7 @@ import com.zch.base.cache.LoginCache
 import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.ext.toast
 import com.zch.base.rxlifecycle.RxLifecycleActivity
-import com.zch.wanandroid.home.HomeFragment
+import com.zch.wanandroid.home.HomeFragment0
 import com.zch.wanandroid.navigation.NavigationFragment
 import com.zch.wanandroid.project.ProjectFragment
 import com.zch.wanandroid.wechat.WechatFragment
@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Created by zch on 2019/01/04.
  */
-@Route(path = ARouterPathConstant.Main.MAIN_ACTIVITY)
 class MainActivity : RxLifecycleActivity() {
 
     private lateinit var mTabsIcon: IntArray
@@ -160,7 +159,7 @@ class MainActivity : RxLifecycleActivity() {
 
     private fun generateItemByIndex(i: Int): androidx.fragment.app.Fragment {
         return when (i) {
-            0 -> HomeFragment()
+            0 -> HomeFragment0()
             1 -> KnowledgeHierarchyFragment()
             2 -> WechatFragment()
             3 -> NavigationFragment()

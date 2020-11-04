@@ -5,6 +5,7 @@ import com.zch.base.constant.ARouterPathConstant
 import com.zch.base.ext.handleInputContent
 import com.zch.base.ext.hideKeyboard
 import com.zch.base.ext.longToast
+import com.zch.base.ext.toast
 import com.zch.common.base.BaseVMActivity
 import com.zch.user.R
 import com.zch.user.databinding.ActivityRegisterBinding
@@ -26,6 +27,7 @@ class RegisterActivity : BaseVMActivity() {
                 hideKeyboard()
             }
             it.isSuccess?.let {
+                toast(getString(R.string.register_success_hint))
                 finish()
             }
             it.isError?.let {

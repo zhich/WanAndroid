@@ -3,6 +3,8 @@ package com.zch.wanandroid.di
 import com.zch.common.CoroutinesDispatcherProvider
 import com.zch.common.api.WanApi
 import com.zch.common.api.WanRetrofitClient
+import com.zch.hometabs.home.HomeRepository
+import com.zch.hometabs.home.HomeViewModel
 import com.zch.user.login.LoginRepository
 import com.zch.user.login.LoginViewModel
 import com.zch.user.register.RegisterRepository
@@ -16,6 +18,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { RegisterViewModel(get(), get()) }
+    viewModel { HomeViewModel(get(), get()) }
 }
 
 val repositoryModule = module {
@@ -23,6 +26,7 @@ val repositoryModule = module {
     single { CoroutinesDispatcherProvider() }
     single { LoginRepository(get()) }
     single { RegisterRepository(get()) }
+    single { HomeRepository(get()) }
 }
 
 val appModule = listOf(viewModelModule, repositoryModule)

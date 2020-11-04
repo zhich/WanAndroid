@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
@@ -9,49 +9,27 @@ android {
     compileSdkVersion Versions.compileSdk
 
     defaultConfig {
-        applicationId "com.zch.wanandroid"
         minSdkVersion Versions.minSdk
         targetSdkVersion Versions.targetSdk
         versionCode Versions.versionCode
         versionName Versions.versionName
 
-        flavorDimensions "default"
-
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
-        vectorDrawables.useSupportLibrary = true
-
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
-    }
-
-    productFlavors {
-        online {
-            manifestPlaceholders.put("baseUrl", "https://www.wanandroid.com")
-        }
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g" //specify the heap size for the dex process
-        // 是否支持大工程模式
-        jumboMode = true
-        // 预编译
-        preDexLibraries = true
-        // 线程数
-        threadCount = 8
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     buildFeatures {
@@ -67,9 +45,6 @@ kapt {
 
 dependencies {
     api project(':common')
-    api project(':user')
-    api project(':hometabs')
     kapt "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompiler"
-
     implementation "cn.bingoogolapple:bga-banner:$rootProject.ext.bannerVersion"
 }
