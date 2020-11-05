@@ -13,4 +13,12 @@
         <item>@string/tab_project</item>
         <item>@string/tab_mine</item>
     </string-array>
+
+    <string-array name="main_top_tab_texts">
+        <item>@string/home</item>
+        <item>@string/square</item>
+        <item>@string/latest_project</item>
+        <item>@string/system</item>
+        <item>@string/navigation</item>
+    </string-array>
 </resources>

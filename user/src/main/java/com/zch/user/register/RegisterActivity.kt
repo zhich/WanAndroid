@@ -18,11 +18,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 @Route(path = ARouterPathConstant.User.REGISTER_ACTIVITY)
 class RegisterActivity : BaseVMActivity() {
 
-    private val binding by binding<ActivityRegisterBinding>(R.layout.activity_register)
-    private val registerViewModel by viewModel<RegisterViewModel>()
+    private val mBinding by binding<ActivityRegisterBinding>(R.layout.activity_register)
+    private val mRegisterViewModel by viewModel<RegisterViewModel>()
 
     override fun startObserve() {
-        registerViewModel.uiState.observe(this, {
+        mRegisterViewModel.uiState.observe(this, {
             if (it.isLoading) {
                 hideKeyboard()
             }
@@ -40,7 +40,7 @@ class RegisterActivity : BaseVMActivity() {
     }
 
     override fun initView() {
-        binding.viewModel = registerViewModel
+        mBinding.viewModel = mRegisterViewModel
         edtAccount.handleInputContent(ivClearAccount)
         edtPassword.handleInputContent(ivClearPassword)
         edtRepassword.handleInputContent(ivClearRepassword)

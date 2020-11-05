@@ -12,6 +12,6 @@ class ARouterPathConstant {
 
     object HomeTabs {
         const val MAIN_ACTIVITY = "/HomeTabs/MainActivity"
-        const val HOME_FRAGMENT = "/HomeTabs/HomeFragment"
+        const val MAIN_FRAGMENT = "/HomeTabs/MainFragment"
     }
 }

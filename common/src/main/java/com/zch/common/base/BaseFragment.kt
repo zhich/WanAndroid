@@ -4,33 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 /**
- * Created by zch on 2020-11-04.
+ * Created by zch on 2020-11-05.
  */
-abstract class BaseVMFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
-
-    lateinit var mBinding: T
+abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = DataBindingUtil.inflate<T>(inflater, layoutId, container, false).apply {
-            lifecycleOwner = this@BaseVMFragment
-        }
-        return mBinding.root
+        return inflater.inflate(getLayoutResId(), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        startObserve()
         initView()
         initData()
     }
 
-    abstract fun startObserve()
+    abstract fun getLayoutResId(): Int
 
     abstract fun initView()
 

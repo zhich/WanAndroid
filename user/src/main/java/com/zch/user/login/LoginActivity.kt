@@ -20,12 +20,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 @Route(path = ARouterPathConstant.User.LOGIN_ACTIVITY)
 class LoginActivity : BaseVMActivity() {
 
-    private val binding by binding<ActivityLoginBinding>(R.layout.activity_login)
-    private val loginViewModel by viewModel<LoginViewModel>()
+    private val mBinding by binding<ActivityLoginBinding>(R.layout.activity_login)
+    private val mLoginViewModel by viewModel<LoginViewModel>()
 
     @ExperimentalCoroutinesApi
     override fun startObserve() {
-        loginViewModel.uiState.observe(this, {
+        mLoginViewModel.uiState.observe(this, {
             if (it.isLoading) {
                 hideKeyboard()
             }
@@ -40,7 +40,7 @@ class LoginActivity : BaseVMActivity() {
     }
 
     override fun initView() {
-        binding.viewModel = loginViewModel
+        mBinding.viewModel = mLoginViewModel
         edtAccount.handleInputContent(ivClearAccount)
         edtPassword.handleInputContent(ivClearPassword)
         tvGoToRegister.setOnClickListener {

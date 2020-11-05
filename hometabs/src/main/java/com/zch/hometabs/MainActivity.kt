@@ -9,34 +9,30 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.tabs.TabLayout
 import com.zch.base.constant.ARouterPathConstant
-import com.zch.common.base.BaseVMActivity
-import com.zch.hometabs.home.HomeFragment
+import com.zch.common.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Created by zch on 2020-11-04.
  */
 @Route(path = ARouterPathConstant.HomeTabs.MAIN_ACTIVITY)
-class MainActivity : BaseVMActivity() {
+class MainActivity : BaseActivity() {
 
-    private lateinit var mTabsIcon: IntArray
-    private lateinit var mTabsTitle: Array<String>
+    private lateinit var mTabIcons: IntArray
+    private lateinit var mTabTitles: Array<String>
 
-    override fun startObserve() {
-
-    }
+    override fun getLayoutResId() = R.layout.activity_main
 
     override fun initView() {
-        setContentView(R.layout.activity_main)
         initTabs()
     }
 
     private fun initTabs() {
         resources.obtainTypedArray(R.array.tab_icons).apply {
             val len = length()
-            mTabsIcon = IntArray(len)
+            mTabIcons = IntArray(len)
             for (i in 0 until len) {
-                mTabsIcon[i] = getResourceId(i, 0)
+                mTabIcons[i] = getResourceId(i, 0)
             }
         }.recycle()
 
@@ -57,11 +53,11 @@ class MainActivity : BaseVMActivity() {
             }
         })
 
-        mTabsTitle = resources.getStringArray(R.array.tab_texts)
-        mTabsIcon.forEachIndexed { i, item ->
+        mTabTitles = resources.getStringArray(R.array.tab_texts)
+        mTabIcons.forEachIndexed { i, item ->
             LayoutInflater.from(this).inflate(R.layout.navigation_tab_item, null)?.run {
                 layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-                findViewById<TextView>(R.id.title).text = mTabsTitle[i]
+                findViewById<TextView>(R.id.title).text = mTabTitles[i]
                 findViewById<ImageView>(R.id.icon).setImageResource(item)
                 tabLayout.addTab(tabLayout.newTab().setCustomView(this), i == 0)
             }
@@ -69,21 +65,21 @@ class MainActivity : BaseVMActivity() {
     }
 
     private fun show(position: Int, transaction: FragmentTransaction) {
-        val tag = mTabsTitle[position]
+        val tag = mTabTitles[position]
         supportFragmentManager.findFragmentByTag(tag)?.let {
             transaction.show(it)
         } ?: transaction.add(R.id.contentLayout, generateItemByIndex(position), tag)
     }
 
     private fun generateItemByIndex(i: Int) = when (i) {
-        0 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.HOME_FRAGMENT).navigation() as HomeFragment
-        1 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.HOME_FRAGMENT).navigation() as HomeFragment
-        2 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.HOME_FRAGMENT).navigation() as HomeFragment
-        else -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.HOME_FRAGMENT).navigation() as HomeFragment
+        0 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
+        1 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
+        2 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
+        else -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
     }
 
     private fun hide(position: Int, transaction: FragmentTransaction) {
-        supportFragmentManager.findFragmentByTag(mTabsTitle[position])?.let {
+        supportFragmentManager.findFragmentByTag(mTabTitles[position])?.let {
             transaction.hide(it)
         }
     }
