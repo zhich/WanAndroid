@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.zch.common.CoroutinesDispatcherProvider
 import com.zch.common.base.BaseViewModel
-import com.zch.common.bean.UserBean
+import com.zch.common.UserBean
 import com.zch.user.login.LoginUiState
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 /**
@@ -25,7 +24,6 @@ class RegisterViewModel(private val repository: RegisterRepository, val provider
     val uiState: LiveData<LoginUiState<UserBean>>
         get() = _uiState
 
-    @ExperimentalCoroutinesApi
     fun register() {
         launchOnUI {
             repository.register(username.get() ?: "", password.get() ?: "", repassword.get() ?: "")

@@ -10,18 +10,29 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val mHomeViewModel by viewModel<HomeViewModel>()
+    private val mArticleViewModel by viewModel<ArticleViewModel>()
 
     override fun startObserve() {
+        mArticleViewModel.run {
+            bannerUiState.observe(viewLifecycleOwner, {
+                it.showSuccess?.let {
 
+                }
+            })
+        }
     }
 
     override fun initView() {
         mBinding.run {
-            viewModel = mHomeViewModel
+            viewModel = mArticleViewModel
         }
     }
 
     override fun initData() {
+        refresh()
+    }
+
+    private fun refresh() {
+        mArticleViewModel.fetchBanner()
     }
 }

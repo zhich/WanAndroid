@@ -5,8 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.zch.common.CoroutinesDispatcherProvider
 import com.zch.common.base.BaseViewModel
-import com.zch.common.bean.UserBean
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.zch.common.UserBean
 import kotlinx.coroutines.flow.collect
 
 /**
@@ -22,7 +21,6 @@ class LoginViewModel(private val repository: LoginRepository, val provider: Coro
     val uiState: LiveData<LoginUiState<UserBean>>
         get() = _uiState
 
-    @ExperimentalCoroutinesApi
     fun login() {
         launchOnUI {
             repository.login(username.get() ?: "", password.get() ?: "")

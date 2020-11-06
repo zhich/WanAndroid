@@ -1,45 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:binding="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.zch.hometabs.home.HomeViewModel" />
+            type="com.zch.hometabs.home.ArticleViewModel" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout style="@style/layout_full">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        style="@style/layout_full"
+        android:background="@color/color_white"
+        binding:isRefresh="@{viewModel.articleUiState.showLoading}"
+        binding:onRefresh="@{viewModel.refreshHome}">
 
-        <cn.bingoogolapple.bgabanner.BGABanner
-            android:id="@+id/banner"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitXY"
-            app:banner_indicatorGravity="bottom|right"
-            app:banner_placeholderDrawable="@drawable/shape_gray_default_bg"
-            app:banner_tipTextColor="@color/colorTitleBg"
-            app:banner_tipTextSize="@dimen/text_common_size"
-            app:banner_transitionEffect="alpha"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvArticleList"
+            style="@style/layout_full"
+            android:layout_marginTop="20dp"
+            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/color_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/banner">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvArticleList"
-                style="@style/layout_full"
-                android:scrollbars="vertical" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

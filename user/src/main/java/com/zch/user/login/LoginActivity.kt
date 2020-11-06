@@ -11,7 +11,6 @@ import com.zch.common.base.BaseVMActivity
 import com.zch.user.R
 import com.zch.user.databinding.ActivityLoginBinding
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -23,7 +22,6 @@ class LoginActivity : BaseVMActivity() {
     private val mBinding by binding<ActivityLoginBinding>(R.layout.activity_login)
     private val mLoginViewModel by viewModel<LoginViewModel>()
 
-    @ExperimentalCoroutinesApi
     override fun startObserve() {
         mLoginViewModel.uiState.observe(this, {
             if (it.isLoading) {
