@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -72,10 +73,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun generateItemByIndex(i: Int) = when (i) {
-        0 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
-        1 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
-        2 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
-        else -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as MainFragment
+        0 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as Fragment
+        1 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as Fragment
+        2 -> ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_FRAGMENT).navigation() as Fragment
+        else -> ARouter.getInstance().build(ARouterPathConstant.Mine.MINE_FRAGMENT).navigation() as Fragment
     }
 
     private fun hide(position: Int, transaction: FragmentTransaction) {

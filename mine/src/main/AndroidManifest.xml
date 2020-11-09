@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zch.hometabs">
+    package="com.zch.mine">
 
     <application>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".TestActivity" />
+        <activity android:name=".module.mycollection.MyCollectionActivity" />
     </application>
 </manifest>

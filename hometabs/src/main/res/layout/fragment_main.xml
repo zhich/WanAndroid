@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/layout_full">
+    style="@style/layout_full"
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:tabIndicatorColor="@color/color_adbe107e"
-            app:tabMode="fixed"
-            app:tabTextAppearance="@style/TabTextStyle" />
-    </com.google.android.material.appbar.AppBarLayout>
+        app:tabIndicatorColor="@color/color_adbe107e"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/TabTextStyle" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         style="@style/layout_full"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        style="@style/layout_wrap"
-        android:visibility="gone" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

@@ -15,32 +15,13 @@
             android:name="baseUrl"
             android:value="${baseUrl}" />
 
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/PublicAppTheme.NoActionBar">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".user.login.LoginActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/PublicAppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name=".user.register.RegisterActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/PublicAppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/PublicAppTheme.NoActionBar" />
     </application>
 
 </manifest>

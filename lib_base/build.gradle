@@ -58,6 +58,7 @@ dependencies {
     api Deps.koin_android
     api Deps.koin_androidx_scope
     api Deps.koin_androidx_viewmodel
+    api Deps.immersionbar
 
     testApi 'junit:junit:4.+'
     androidTestApi 'androidx.test.ext:junit:1.1.2'

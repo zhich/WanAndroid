@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.tabs.TabLayoutMediator
+import com.gyf.immersionbar.ImmersionBar
 import com.zch.base.constant.ARouterPathConstant
 import com.zch.common.base.BaseFragment
 import com.zch.hometabs.home.HomeFragment
@@ -34,6 +35,8 @@ class MainFragment : BaseFragment() {
     }
 
     override fun initView() {
+        ImmersionBar.with(this).statusBarDarkFont(true, 0.2f).init()
+        ImmersionBar.setTitleBar(this, tabLayout)
         mTitles = resources.getStringArray(R.array.main_top_tab_texts)
         viewPager?.let {
             it.offscreenPageLimit = 1

@@ -1,19 +1,20 @@
 package com.zch.wanandroid
 
-import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zch.base.constant.ARouterPathConstant
-import com.zch.base.rxlifecycle.RxLifecycleActivity
+import com.zch.common.base.BaseActivity
 
 /**
- * Created by zch on 2019/02/20.
+ * Created by zch on 2020-11-09.
  */
-class SplashActivity : RxLifecycleActivity() {
+class SplashActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+    override fun getLayoutResId() = R.layout.activity_splash
 
+    override fun initView() {
+    }
+
+    override fun initData() {
         ARouter.getInstance().build(ARouterPathConstant.HomeTabs.MAIN_ACTIVITY).navigation()
         finish()
     }
