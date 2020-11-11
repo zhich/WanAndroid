@@ -38,5 +38,4 @@
 - [ARouter](https://github.com/alibaba/ARouter)
 - [AndPermission](https://github.com/yanzhenjie/AndPermission)
 - [BRVH](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
-- [BGABanner-Android](https://github.com/bingoogolapple/BGABanner-Android)
 - ...

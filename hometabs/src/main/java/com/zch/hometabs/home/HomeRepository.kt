@@ -1,5 +1,6 @@
 package com.zch.hometabs.home
 
+import com.zch.common.ArticleUiState
 import com.zch.common.BannerUiState
 import com.zch.common.api.WanApi
 import com.zch.common.api.doError
@@ -24,5 +25,16 @@ class HomeRepository(private val api: WanApi) : BaseRepository() {
     }.flowOn(Dispatchers.IO)
             .catch {
                 emit(BannerUiState(it.message))
+            }
+
+    suspend fun fetchHomeArticles(page: Int) = flow {
+        api.fetchHomeArticles(page).doSuccess {
+            emit(ArticleUiState(showSuccess = it))
+        }.doError {
+            emit(ArticleUiState(showError = it))
+        }
+    }.flowOn(Dispatchers.IO)
+            .catch {
+                emit(ArticleUiState(showError = it.message))
             }
 }

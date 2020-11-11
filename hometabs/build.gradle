@@ -46,5 +46,5 @@ kapt {
 dependencies {
     api project(':common')
     kapt "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompiler"
-    implementation "cn.bingoogolapple:bga-banner:$rootProject.ext.bannerVersion"
+    implementation Deps.banner
 }

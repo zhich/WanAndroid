@@ -2,10 +2,8 @@ package com.zch.common.api
 
 import com.zch.common.BannerBean
 import com.zch.common.UserBean
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import com.zch.module.article.ArticleResp
+import retrofit2.http.*
 
 /**
  * Created by zch on 2020-10-21.
@@ -22,4 +20,7 @@ interface WanApi {
 
     @GET("/banner/json")
     suspend fun fetchBanner(): HttpResult<List<BannerBean>>
+
+    @GET("/article/list/{page}/json")
+    suspend fun fetchHomeArticles(@Path("page") page: Int): HttpResult<ArticleResp>
 }

@@ -24,6 +24,7 @@ object Versions {
     const val okhttp_logging_interceptor = "4.9.0"
     const val koin = "2.2.0-rc-3"
     const val immersionbar = "3.0.0"
+    const val banner = "2.1.0"
 }
 
 object Deps {
@@ -48,4 +49,5 @@ object Deps {
     const val koin_androidx_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
     const val immersionbar = "com.gyf.immersionbar:immersionbar:${Versions.immersionbar}"
+    const val banner = "com.youth.banner:banner:${Versions.banner}"
 }

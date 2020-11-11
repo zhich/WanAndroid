@@ -3,6 +3,6 @@
     android:id="@+id/viewHistoryAccount"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color_white"
+    android:background="@color/color_ffffff"
     android:overScrollMode="never"
     android:scrollbars="vertical" />

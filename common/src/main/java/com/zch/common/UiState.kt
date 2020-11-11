@@ -11,10 +11,10 @@ data class BannerUiState(
 )
 
 data class ArticleUiState(
-        val showLoading: Boolean,
-        val showError: String?,
-        val showSuccess: ArticleResp?,
-        val showEnd: Boolean, // 加载更多
-        val isRefresh: Boolean, // 刷新
-        val needLogin: Boolean? = null
+        val showLoading: Boolean? = false,
+        val showError: String? = "",
+        val showSuccess: ArticleResp? = null,
+        val showEnd: Boolean? = false, // 加载更多
+        val isRefresh: Boolean? = false, // 刷新
+        val needLogin: Boolean? = false
 )

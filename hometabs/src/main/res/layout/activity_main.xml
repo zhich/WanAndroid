@@ -23,7 +23,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_tab_height"
-        android:background="@color/color_white"
+        android:background="@color/color_ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:tabBackground="@android:color/transparent"
         app:tabIndicatorHeight="0dp"

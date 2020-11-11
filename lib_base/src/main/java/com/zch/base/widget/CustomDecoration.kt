@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import androidx.recyclerview.widget.RecyclerView
 
 import com.zch.base.R
 
@@ -22,7 +21,7 @@ class CustomDecoration(context: Context, orientation: Int, drawable: Int, privat
     constructor(context: Context, drawable: Int = R.drawable.shape_divider_1, inset: Int = 0) : this(context, 1, drawable, inset)
 
     init {
-        this.mPaint.color = context.resources.getColor(R.color.color_white)
+        this.mPaint.color = context.resources.getColor(R.color.color_ffffff)
         this.mPaint.style = Paint.Style.FILL
         this.mPaint.isAntiAlias = true
         this.setOrientation(orientation)
