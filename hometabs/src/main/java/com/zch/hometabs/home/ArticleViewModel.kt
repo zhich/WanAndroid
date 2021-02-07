@@ -15,10 +15,13 @@ class ArticleViewModel(private val repository: HomeRepository) : BaseViewModel()
         object Home : ArticleType()
         object Square : ArticleType()
         object LatestProject : ArticleType()
+        object ProjectDetailList : ArticleType()
     }
 
     val bannerUiState = MutableLiveData<BannerUiState>()
     val articleUiState = MutableLiveData<ArticleUiState>()
+
+    private var currentPage = 0
 
     fun fetchBanner() {
         launchOnUI {
@@ -26,6 +29,33 @@ class ArticleViewModel(private val repository: HomeRepository) : BaseViewModel()
                     .collect {
                         bannerUiState.postValue(it)
                     }
+        }
+    }
+
+    fun fetchHomeArticles(isRefresh: Boolean = false) = fetchArticleList(ArticleType.Home, isRefresh)
+
+    private fun fetchArticleList(articleType: ArticleType, isRefresh: Boolean = false, cid: Int = 0) {
+        launchOnUI {
+            if (isRefresh) currentPage = if (articleType is ArticleType.ProjectDetailList) 1 else 0
+            when (articleType) {
+                ArticleType.Home -> repository.fetchHomeArticles(currentPage).collect {
+                    handleResult(it, isRefresh)
+                }
+            }
+        }
+    }
+
+    private fun handleResult(result: ArticleUiState, isRefresh: Boolean = false) {
+        result.showLoading = false
+        result.data?.let {
+            if (it.offset > it.total) {
+                articleUiState.postValue(result.apply { showEnd = true })
+                return
+            }
+            currentPage++
+            articleUiState.postValue(result.also { it1 -> it1.isRefresh = isRefresh })
+        } ?: run {
+            articleUiState.postValue(result)
         }
     }
 

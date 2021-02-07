@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:binding="http://schemas.android.com/tools">
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -20,21 +20,12 @@
         binding:isRefresh="@{viewModel.articleUiState.showLoading}"
         binding:onRefresh="@{viewModel.refreshHome}">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvArticleList"
             style="@style/layout_full"
-            android:orientation="vertical">
-
-            <com.youth.banner.Banner
-                android:id="@+id/banner"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvArticleList"
-                style="@style/layout_full"
-                adapter="@{adapter}"
-                android:layout_marginTop="20dp"
-                binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </LinearLayout>
+            adapter="@{adapter}"
+            android:layout_marginTop="20dp"
+            android:overScrollMode="never"
+            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

@@ -18,7 +18,7 @@ class HomeRepository(private val api: WanApi) : BaseRepository() {
 
     suspend fun fetchBanner() = flow {
         api.fetchBanner().doSuccess {
-            emit(BannerUiState(showSuccess = it))
+            emit(BannerUiState(data = it))
         }.doError {
             emit(BannerUiState(it))
         }
@@ -29,12 +29,12 @@ class HomeRepository(private val api: WanApi) : BaseRepository() {
 
     suspend fun fetchHomeArticles(page: Int) = flow {
         api.fetchHomeArticles(page).doSuccess {
-            emit(ArticleUiState(showSuccess = it))
+            emit(ArticleUiState(data = it))
         }.doError {
-            emit(ArticleUiState(showError = it))
+            emit(ArticleUiState(errMsg = it))
         }
     }.flowOn(Dispatchers.IO)
             .catch {
-                emit(ArticleUiState(showError = it.message))
+                emit(ArticleUiState(errMsg = it.message))
             }
 }

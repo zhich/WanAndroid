@@ -10,26 +10,50 @@
             type="com.zch.module.article.ArticleBean" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_10"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="@dimen/dp_10"
-        android:layout_marginBottom="5dp"
-        app:cardBackgroundColor="@color/color_ffffff"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2.5dp"
-        app:cardMaxElevation="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="false">
+        android:padding="@dimen/dp_10">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_10">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAuthor"
+            style="@style/light_text_style"
+            android:text='@{articleBean.author.empty?articleBean.shareUser:articleBean.author}'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="author" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/light_text_style"
+            android:layout_marginStart="15dp"
+            android:text="@{articleBean.superChapterName+'/'+articleBean.chapterName}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAuthor"
+            app:layout_constraintLeft_toRightOf="@+id/tvAuthor"
+            app:layout_constraintTop_toTopOf="@+id/tvAuthor"
+            tools:text="Android" />
 
-    </androidx.cardview.widget.CardView>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            style="@style/layout_wrap"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{articleBean.title}"
+            android:textColor="@color/color_343434"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
+            tools:text="Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/light_text_style"
+            android:layout_marginTop="5dp"
+            android:text="@{articleBean.niceDate}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="1小时前" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

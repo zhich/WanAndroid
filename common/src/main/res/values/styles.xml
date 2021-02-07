@@ -1,5 +1,11 @@
 <resources>
+
     <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="light_text_style" parent="layout_wrap">
+        <item name="android:textColor">@color/color_a3a3a3</item>
+        <item name="android:textSize">13sp</item>
     </style>
 </resources>

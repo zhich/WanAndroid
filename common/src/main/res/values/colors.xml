@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_adbe107e">#adbe107e</color>
+    <color name="color_a3a3a3">#a3a3a3</color>
+    <color name="color_343434">#343434</color>
+    <color name="color_f7f7f7">#f7f7f7</color>
+    <color name="default_bg">@color/color_f7f7f7</color>
 </resources>

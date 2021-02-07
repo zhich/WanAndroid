@@ -1,5 +1,6 @@
 package com.zch.hometabs.home
 
+import android.text.TextUtils
 import com.zch.common.base.BaseBindAdapter
 import com.zch.hometabs.BR
 import com.zch.hometabs.R
@@ -12,6 +13,8 @@ class HomeArticleAdapter(layoutResId: Int = R.layout.item_home_article) : BaseBi
 
     override fun convert(helper: BindViewHolder, item: ArticleBean) {
         super.convert(helper, item)
-
+        item.run {
+//            helper.setText(R.id.tvAuthor, if (TextUtils.isEmpty(author)) shareUser else author)
+        }
     }
 }

@@ -6,15 +6,15 @@ import com.zch.module.article.ArticleResp
  * Created by zch on 2020-11-06.
  */
 data class BannerUiState(
-        val showError: String? = "",
-        val showSuccess: List<BannerBean>? = null
+        var errMsg: String? = "",
+        var data: List<BannerBean>? = null
 )
 
 data class ArticleUiState(
-        val showLoading: Boolean? = false,
-        val showError: String? = "",
-        val showSuccess: ArticleResp? = null,
-        val showEnd: Boolean? = false, // 加载更多
-        val isRefresh: Boolean? = false, // 刷新
-        val needLogin: Boolean? = false
+        var showLoading: Boolean? = false,
+        var errMsg: String? = "",
+        var data: ArticleResp? = null,
+        var showEnd: Boolean? = false, // 加载更多
+        var isRefresh: Boolean? = false, // 刷新
+        var needLogin: Boolean? = false
 )
